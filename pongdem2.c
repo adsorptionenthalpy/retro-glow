@@ -6,7 +6,7 @@
  This buggy demo is for use in a future programming tutorial series for C to 8086 ASM conversion,
  and watching experts argue over social media over common programming practices.
  
- Features for future imple mentation:
+ Features for future implementation:
  Ball randomization
  Improved clip detection
  Flicker-free screen clearing
