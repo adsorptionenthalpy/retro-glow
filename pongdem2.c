@@ -13,6 +13,7 @@
  Game menu (Value passing functions)
  Resolution menu w/ element scaling (structures)
  Data structure such as binary tree or list
+ Faster draw algorithms (demonstrated recursion)
  Keyboard hooking (utilizing interrupts for improved input)
  */
  
@@ -49,26 +50,10 @@ int initialize();
 void game();
 char getkey(void);
  
-int initmouse()
-{
-    union REGS inreg, outreg;
-    inreg.x.ax =0x0;
-    int86(0x33, &inreg, &outreg);
-    return(outreg.x.ax);
-}
- 
-void showmouse()
-{
-    union REGS inreg, outreg;
-    inreg.x.ax = 0x1;
-    int86(0x33,&inreg,&outreg);
-}
- 
 int main()
 {
     if (initialize())
     {
-        initmouse();
         game();
         /*end*/
         closegraph();
@@ -122,8 +107,7 @@ void game()
         sprintf(msg,"%d", inp(0x60));
         outtextxy(1,1,msg);
  
-        /* Simple keyboard controls (limitation of Turbo C)*/
- 
+        /* Get key status*/
             ch = inp(0x60);
             if(ch == ESCAPEKEY)
             {
